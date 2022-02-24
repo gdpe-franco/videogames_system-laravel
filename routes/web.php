@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VideogamesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')-> name('home');
 Route::view('/users', 'users')-> name('users');
-Route::view('/videogames', 'videogames')-> name('home');
-Route::view('/account', 'account')-> name('account');
+Route::get('/videogames', [VideogamesController::class, 'index']) -> name('videogames');
