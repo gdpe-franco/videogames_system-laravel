@@ -14,17 +14,9 @@ use App\Http\Controllers\VideogamesController;
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
-
-/* Route::get('/', function(){
-    $name = "Franco";
-    return view('home',compact('name'));
-}) -> name ('home'); */
-
 //Route::view('/', 'home'); // Pages without logic
 
 Route::view('/', 'home')-> name('home');
 Route::view('/users', 'users')-> name('users');
-Route::get('/videogames', [VideogamesController::class, 'index']) -> name('videogames');
+Route::get('/videogames/', [VideogamesController::class, 'index']) -> name('videogame.index');
+Route::get('/videogames/{id}', [VideogamesController::class, 'edit']) -> name('videogame.edit');

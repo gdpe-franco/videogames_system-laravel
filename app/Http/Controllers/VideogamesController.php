@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Videogame;
 
 class VideogamesController extends Controller
 {
@@ -13,14 +14,9 @@ class VideogamesController extends Controller
      */
     public function index()
     {
-        $videogames = [
-            ['title' => 'Videogame 1'],
-            ['title' => 'Videogame 2'],
-            ['title' => 'Videogame 3'],
-            ['title' => 'Videogame 4'],
-        ];
+        $videogames = Videogame::get();
 
-        return view('videogames', compact('videogames'));
+        return view('videogames.index', compact('videogames'));
     }
 
     /**
@@ -63,7 +59,7 @@ class VideogamesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $id;
     }
 
     /**
