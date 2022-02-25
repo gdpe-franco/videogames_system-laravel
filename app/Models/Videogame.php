@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Videogame extends Model
 {
     use HasFactory;
+    public $timestamps = true;
+
+    protected $guarded = [];
+    
+    public function getRouteKeyName()
+    {
+        return 'url';
+    }
 }

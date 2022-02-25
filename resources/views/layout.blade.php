@@ -18,9 +18,9 @@
 
     <nav>
         <ul>
-            <li class="{{ setActive('home')}}"><a href="/">Home</a></li>
-            <li class="{{ setActive('users')}}"><a href="/users">Users</a></li>
-            <li  class="{{ setActive('videogames')}}"><a href="/videogames">VideoGames</a></li>
+            <li class="{{ setActive('home')}}"><a href=" {{ route('home') }}">Home</a></li>
+            <li class="{{ setActive('users')}}"><a href="{{ route('users') }}">Users</a></li>
+            <li class="{{ setActive('videogames.*')}}"><a href="{{ route('videogames.index') }}">VideoGames</a></li>
         </ul>
     </nav>
     @yield('content')

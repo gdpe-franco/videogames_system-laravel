@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VideogamesController;
+use App\Http\Controllers\VideogameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +18,7 @@ use App\Http\Controllers\VideogamesController;
 
 Route::view('/', 'home')-> name('home');
 Route::view('/users', 'users')-> name('users');
-Route::get('/videogames/', [VideogamesController::class, 'index']) -> name('videogame.index');
-Route::get('/videogames/{id}', [VideogamesController::class, 'edit']) -> name('videogame.edit');
+Route::get('/videogames', [VideogameController::class, 'index']) -> name('videogames.index');
+Route::get('/videogames/create', [VideogameController::class, 'create']) -> name('videogames.create');
+Route::post('/videogames/', [VideogameController::class, 'store']) -> name('videogames.store');
+Route::get('/videogames/{videogame}', [VideogameController::class, 'edit']) -> name('videogames.edit');

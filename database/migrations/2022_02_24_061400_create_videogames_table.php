@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('rating');
             $table->string('console');
             $table->double('purchase_price');
+            $table->string('url')->unique();
             $table->timestamps();
         });
     }

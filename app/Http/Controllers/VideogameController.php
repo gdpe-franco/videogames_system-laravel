@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Videogame;
 
-class VideogamesController extends Controller
+class VideogameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class VideogamesController extends Controller
      */
     public function create()
     {
-        //
+        return view('videogames.create');
     }
 
     /**
@@ -35,9 +35,18 @@ class VideogamesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $fields = request()->validate([
+            'title' => 'required',
+            'rating' => 'required',
+            'console' => 'required',
+            'purchase_price' => 'required',
+            'url' => 'required',
+        ]);
+        
+        Videogame::create($fields);
+        return redirect()->route('videogames.index');
     }
 
     /**
@@ -57,9 +66,11 @@ class VideogamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Videogame $videogame)
     {
-        return $id;
+        return view('videogames.edit', [
+            'videogame' => $videogame
+        ]);
     }
 
     /**

@@ -6,7 +6,7 @@
     <div class="container d-flex justify-content-center">
         <h1>Videogames</h1>
     </div>
-    <button>Add++</button>
+    <button><a href=" {{ route('videogames.create') }}">Add++</a></button>
     <table class="table">
         <thead>
             <tr>
@@ -27,7 +27,7 @@
                     <td>{{ $videogame->rating }}</td>
                     <td>{{ $videogame->console }}</td>
                     <td>{{ $videogame->purchase_price }}</td>
-                    <td><a href=" {{ route('videogame.edit', $videogame) }}">Edit</a></td> 
+                    <td><a href=" {{ route('videogames.edit', $videogame) }}">Edit</a></td> 
                     <td>Delete</td>
                 </tr>
             @empty
