@@ -22,4 +22,5 @@ Route::get('/videogames', [VideogameController::class, 'index']) -> name('videog
 Route::get('/videogames/create', [VideogameController::class, 'create']) -> name('videogames.create');
 Route::post('/videogames/', [VideogameController::class, 'store']) -> name('videogames.store');
 Route::get('/videogames/edit/{videogame}', [VideogameController::class, 'edit']) -> name('videogames.edit');
-Route::patch('/videogames/edit/{videogame}', [VideogameController::class, 'update']) -> name('videogames.update');
+Route::patch('/videogames/{videogame}', [VideogameController::class, 'update']) -> name('videogames.update');
+Route::delete('/videogames/{videogame}', [VideogameController::class, 'destroy']) -> name('videogames.destroy');
