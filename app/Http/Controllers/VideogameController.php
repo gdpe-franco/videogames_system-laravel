@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateVideogameRequest;
+use App\Http\Requests\SaveVideogameRequest;
 use App\Models\Videogame;
 
 class VideogameController extends Controller
@@ -36,7 +36,7 @@ class VideogameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateVideogameRequest $request)
+    public function store(SaveVideogameRequest $request)
     {
         //Insertar sólo los campos validados
         Videogame::create($request -> validated());
@@ -75,9 +75,10 @@ class VideogameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Videogame $videogame, SaveVideogameRequest $request) //i$d
     {
-        //
+        $videogame->update($request->validated());
+        return redirect()->route('videogames.index', $videogame);
     }
 
     /**
