@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateVideogameRequest;
 use App\Models\Videogame;
 
 class VideogameController extends Controller
@@ -36,17 +36,10 @@ class VideogameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(CreateVideogameRequest $request)
     {
-        $fields = request()->validate([
-            'title' => 'required',
-            'rating' => 'required',
-            'console' => 'required',
-            'purchase_price' => 'required',
-            'url' => 'required',
-        ]);
-        
-        Videogame::create($fields);
+        //Insertar sólo los campos validados
+        Videogame::create($request -> validated());
         
         return redirect()->route('videogames.index');
     }
