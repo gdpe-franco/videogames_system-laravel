@@ -4,6 +4,13 @@
 
 @section('content')
 <h1>Add new game</h1>
+@if($errors-> any())
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
 <form method= "POST" action="{{ route('videogames.store') }}">
     @csrf
     <label >
@@ -13,24 +20,24 @@
     <label >
         Rating
         <select name="rating" id="">
-            <option value="">Select a rating...</option>
-            <option value="">Everyone</option>
-            <option value="">Everyone 10+</option>
-            <option value="">Teen</option>
-            <option value="">Mature 17+</option>
-            <option value="">Adults Only 18+</option>
-            <option value="">Rating Pending</option>
-            <option value="">Rating Pending-Likely Mature 17+</option>
+            <option selected="true" disabled="disabled" value="">Select a rating...</option>
+            <option>Everyone</option>
+            <option>Everyone 10+</option>
+            <option>Teen</option>
+            <option>Mature 17+</option>
+            <option>Adults Only 18+</option>
+            <option>Rating Pending</option>
+            <option>Rating Pending-Likely Mature 17+</option>
         </select>
     </label> <br>
     <label >
         Videogame console
         <select name="console" id="">
-            <option value="">Select a console...</option>
-            <option value="">Nintendo Switch</option>
-            <option value="">PlayStation 5</option>
-            <option value="">PlayStation 4</option>
-            <option value="">Xbox Series X|S</option>
+            <option selected="true" disabled="disabled" value="">Select a console...</option>
+            <option>Nintendo Switch</option>
+            <option>PlayStation 5</option>
+            <option>PlayStation 4</option>
+            <option>Xbox Series X|S</option>
         </select>
     </label> <br>
     <label >

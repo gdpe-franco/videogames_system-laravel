@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Videogame;
 
@@ -46,6 +47,7 @@ class VideogameController extends Controller
         ]);
         
         Videogame::create($fields);
+        
         return redirect()->route('videogames.index');
     }
 
