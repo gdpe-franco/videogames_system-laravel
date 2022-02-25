@@ -4,13 +4,9 @@
 
 @section('content')
 <h1>Edit videogame</h1>
-@if($errors-> any())
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
+
+@include('partials.validation-errors')
+
 <form method= "POST" action="{{ route('videogames.update', $videogame)}}">
     @csrf @method('PATCH')
     <label >
