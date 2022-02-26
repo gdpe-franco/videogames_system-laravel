@@ -31,9 +31,9 @@
     </label> <br>
     <label >
         Sale Price
-        <input type="number" name = "sale_price" step="0.01" value="{{ old('sale_price', $videogame -> sale_price)}}" disabled>
+        <input type="number" name = "sale_price" step="0.01" value="{{ old('sale_price', $videogame -> sale_price)}}">
     </label> <br>
     <label >
         URL
-        <input type="text" name = "url" value="{{old('url', $videogame -> url)}}">
+        <input type="text" name = "url" value="{{old('url', $videogame -> url) }}">
     </label> <br>

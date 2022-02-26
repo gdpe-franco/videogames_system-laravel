@@ -28,6 +28,7 @@ class SaveVideogameRequest extends FormRequest
             'rating' => 'required',
             'console' => 'required',
             'purchase_price' => 'required',
+            'sale_price' => 'required',
             'url' => 'required',
         ];
     }

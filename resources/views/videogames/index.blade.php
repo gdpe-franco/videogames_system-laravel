@@ -6,7 +6,7 @@
     <div class="container d-flex justify-content-center">
         <h1>Videogames</h1>
     </div>
-    <button><a href=" {{ route('videogames.create') }}">Add++</a></button>
+    <a href=" {{ route('videogames.create') }}"><button>Add</button></a>
     <table class="table">
         <thead>
             <tr>
@@ -28,8 +28,8 @@
                     <td>{{ $videogame->rating }}</td>
                     <td>{{ $videogame->console }}</td>
                     <td>{{ $videogame->purchase_price }}</td>
-                    <td>{{ (double)$videogame->purchase_price * 1.4}}</td>
-                    <td><button><a href=" {{ route('videogames.edit', $videogame) }}">Edit</a></button></td> 
+                    <td>{{ $videogame->sale_price }}</td>
+                    <td><a href=" {{ route('videogames.edit', $videogame) }}"><button>Edit</button></a></td> 
                     <form method="POST" action="{{route('videogames.destroy', $videogame)}}">
                         @csrf @method('DELETE')    
                         <td><button>Delete</button></td>
