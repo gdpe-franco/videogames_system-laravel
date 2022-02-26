@@ -29,7 +29,7 @@
                     <td>{{ $videogame->console }}</td>
                     <td>{{ $videogame->purchase_price }}</td>
                     <td>{{ (double)$videogame->purchase_price * 1.4}}</td>
-                    <td><a href=" {{ route('videogames.edit', $videogame) }}">Edit</a></td> 
+                    <td><button><a href=" {{ route('videogames.edit', $videogame) }}">Edit</a></button></td> 
                     <form method="POST" action="{{route('videogames.destroy', $videogame)}}">
                         @csrf @method('DELETE')    
                         <td><button>Delete</button></td>

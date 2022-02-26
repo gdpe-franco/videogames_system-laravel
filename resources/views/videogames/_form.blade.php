@@ -1,4 +1,4 @@
-<label >
+    <label >
         Title
         <input type="text" name = "title" value="{{ old('title', $videogame -> title)}}">
     </label> <br>
@@ -12,7 +12,7 @@
             <option {{ $videogame -> rating == "Mature 17+" ? 'selected' : ''}}>Mature 17+</option>
             <option {{ $videogame -> rating == "Adults Only 18+" ? 'selected' : ''}}>Adults Only 18+</option>
             <option {{ $videogame -> rating == "Rating Pending" ? 'selected' : ''}}>Rating Pending</option>
-            <option {{ $videogame -> rating == "Rating Pending-Likely Mature" ? 'selected' : ''}}>Rating Pending-Likely Mature 17+</option>
+            <option {{ $videogame -> rating == "Rating Pending-Likely Mature 17+" ? 'selected' : ''}}>Rating Pending-Likely Mature 17+</option>
         </select>
     </label> <br>
     <label >
@@ -25,9 +25,13 @@
             <option {{ $videogame -> console == "Xbox Series X|S" ? 'selected' : ''}}>Xbox Series X|S</option>
         </select>
     </label> <br>
-    <label >
-        Price
+    <label>
+        Purchase Price
         <input type="number" name = "purchase_price" step="0.01" value="{{ old('purchase_price', $videogame -> purchase_price)}}">
+    </label> <br>
+    <label >
+        Sale Price
+        <input type="number" name = "sale_price" step="0.01" value="{{ old('sale_price', $videogame -> sale_price)}}" disabled>
     </label> <br>
     <label >
         URL
