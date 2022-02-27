@@ -7,6 +7,7 @@
         <h1>Videogames</h1>
     </div>
     <a href=" {{ route('videogames.create') }}"><button>Add</button></a>
+    
     <table class="table">
         <thead>
             <tr>
