@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VideogamesFormMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\SaveVideogameRequest;
 use App\Models\Videogame;
 
@@ -41,9 +43,11 @@ class VideogameController extends Controller
     public function store(SaveVideogameRequest $request)
     {
         //Insertar sólo los campos validados
-        Videogame::create($request -> validated());
         
-        return redirect()->route('videogames.index');
+        $videogame = Videogame::create($request -> validated());
+        
+        Mail::to('test@test.com')->send(new VideogamesFormMail($videogame));
+        return redirect()->route('videogames.create');
     }
 
     /**

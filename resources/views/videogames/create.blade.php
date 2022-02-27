@@ -4,6 +4,9 @@
 
 @section('content')
 <h1>Add new game</h1>
+@if(session('status'))
+    {{ session('status')}}
+@endif
 
 @include('partials.validation-errors')
 
