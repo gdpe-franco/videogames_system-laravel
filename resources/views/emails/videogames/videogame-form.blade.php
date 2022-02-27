@@ -1,6 +1,6 @@
 @component('mail::message')
 
-# Thank you for your message
+# You have add a new videogame
 
 <strong>Title</strong> {{$videogame['title']}}
 
