@@ -10,6 +10,12 @@ use App\Models\Videogame;
 
 class VideogameController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
