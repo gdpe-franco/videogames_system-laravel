@@ -7,7 +7,7 @@
 </div>
 <div class="form-group">
     <label for="rating">Rating</label>
-    <select class="form-control bg-light shadow-sm"
+    <select class="form-control form-select bg-light shadow-sm"
         name="rating" id=""  value="{{ old('rating', $videogame -> rating)}}">
         <option selected="true" disabled="disabled">Select a rating...</option>
         <option {{ $videogame -> rating == "Everyone" ? 'selected' : ''}}>Everyone</option>
@@ -21,7 +21,7 @@
 </div>
 <div class="form-group">
     <label for="console">Videogame console</label>
-    <select class="form-control bg-light shadow-sm"
+    <select class="form-control form-select bg-light shadow-sm "
         name="console" id="" value="{{ old('console', $videogame -> console)}}">
         <option selected="true" disabled="disabled">Select a console...</option>
         <option {{ $videogame -> console == "Nintendo Switch" ? 'selected' : ''}}>Nintendo Switch</option>

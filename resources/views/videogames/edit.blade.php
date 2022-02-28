@@ -3,15 +3,29 @@
 @section('title', 'Videogame | Edit')
 
 @section('content')
-    <h1>Edit videogame</h1>
 
-    @include('partials.validation-errors')
+<div class="container ">
+    <div class="row">
+        <div class="col-12 col-sm-10 col-lg-6 mx-auto">
+            <h1 class="text-center my-3">Edit videogame</h1>
 
-    <form method= "POST" action="{{ route('videogames.update', $videogame)}}">
-        @csrf @method('PATCH')
-    
-        @include('videogames._form')
+            @include('partials.validation-errors')
 
-        <button>Update</button>
-    </form>
+            <form class="bg-white shadow rounded py-3 px-4"
+                method= "POST"
+                action="{{ route('videogames.update', $videogame)}}">
+                @csrf @method('PATCH')
+            
+                @include('videogames._form')
+            <div class="d-grid gap-2">
+                <button
+                    class="btn btn-primary btn-md btn-block">Update</button>
+                <button
+                    class="btn btn-outline-primary btn-md btn-block">Cancel</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection

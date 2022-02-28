@@ -3,12 +3,11 @@
 @section('title', 'Videogames')
 
 @section('content')
-    <div class="container d-flex justify-content-center">
-        <h1>Videogames</h1>
-    </div>
+<div class="container">
+    <h1 class="text-center mb-3">Videogames</h1>
 
     @auth
-        <a href=" {{ route('videogames.create') }}"><button>Add</button></a>
+        <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success mb-3">Add</button></a>
     @endauth
 
     <table class="table">
@@ -23,8 +22,8 @@
                 @endauth
                 <th scope="col">Sale price</th>
                 @auth
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 @endauth
             </tr>
         </thead>
@@ -40,10 +39,10 @@
                     @endauth
                     <td>{{ $videogame->sale_price }}</td>
                     @auth
-                        <td><a href=" {{ route('videogames.edit', $videogame) }}"><button>Edit</button></a></td> 
+                        <td><a href=" {{ route('videogames.edit', $videogame) }}"><button class="btn btn-outline-info">Edit</button></a></td> 
                         <form method="POST" action="{{route('videogames.destroy', $videogame)}}">
                             @csrf @method('DELETE')    
-                            <td><button>Delete</button></td>
+                            <td><button class="btn btn-outline-danger">Delete</button></td>
                         </form>
                     @endauth
                 </tr>
@@ -52,4 +51,5 @@
             @endforelse
         </tbody>
     </table>
+</div>
 @endsection
