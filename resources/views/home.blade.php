@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('layouts.app')
 
 @section('content')
@@ -22,12 +21,3 @@
     </div>
 </div>
 @endsection
-=======
-@extends('layout')
-
-@section('title', 'Home')
-
-@section('content')
-    <h1>Home</h1>
-@endsection
->>>>>>> 2494cf900f01ca76156c79f1d1981ea3c60028df
