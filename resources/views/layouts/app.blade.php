@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-light navbar-expand-md bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -37,10 +37,15 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto nav-pills navbar-light">
                         <!-- Authentication Links -->
                         @guest
-                            @yield('navmenu')
+                            <li class="nav-item">
+                                <a class="nav-link {{ setActive('home') }}" href=" {{ route('home') }}">Home</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ setActive('users') }}" href="{{ route('users') }}">Users</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ setActive('videogames.*') }}" href="{{ route('videogames.index') }}">VideoGames</a></li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -53,7 +58,6 @@
                                 </li>
                             @endif
                         @else
-                            @yield('navmenu')
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
