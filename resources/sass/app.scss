@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.active a {
+    color: green;
+    font-weight: bold;
+    text-decoration: none;
+}
