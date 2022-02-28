@@ -53,7 +53,7 @@ class VideogameController extends Controller
         $videogame = Videogame::create($request -> validated());
         
         Mail::to('test@test.com')->send(new VideogamesFormMail($videogame));
-        return redirect()->route('videogames.create');
+        return redirect()->route('videogames.create')->with('status', 'Videogame stored succesfully!');
     }
 
     /**
@@ -90,7 +90,7 @@ class VideogameController extends Controller
     public function update(Videogame $videogame, SaveVideogameRequest $request) //i$d
     {
         $videogame->update($request->validated());
-        return redirect()->route('videogames.index', $videogame);
+        return redirect()->route('videogames.index', $videogame)->with('status', 'Videogame updated succesfully!');
     }
 
     /**
@@ -102,6 +102,6 @@ class VideogameController extends Controller
     public function destroy(Videogame $videogame)
     {
         $videogame -> delete();
-        return redirect()->route('videogames.index');
+        return redirect()->route('videogames.index')->with('status', 'Videogame deleted succesfully!');
     }
 }
