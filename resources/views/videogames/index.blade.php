@@ -39,12 +39,16 @@
                     @endauth
                     <td>{{ $videogame->sale_price }}</td>
                     @auth
-                        <td><a href=" {{ route('videogames.edit', $videogame) }}"><button class="btn btn-outline-info">Edit</button></a></td> 
+                        <td><a href=" {{ route('videogames.edit', $videogame) }}">
+                            <button class="btn btn-outline-info">Edit</button>
+                        </a></td> 
                         
-                        <form method="POST" action=" {{route('videogames.destroy', $videogame)}} ">
-                            @csrf @method('DELETE')    
-                            <td><button class="btn-outline-danger">Delete</button></td>
-                        </form>
+                        <td>
+                            <form method="POST" action=" {{route('videogames.destroy', $videogame)}} ">
+                                @csrf @method('DELETE')   
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
                     @endauth
                 </tr>
             @empty
