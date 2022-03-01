@@ -18,7 +18,7 @@
     
                 @include('videogames._form')
                 
-                <button type="button"
+                <button type="submit"
                     class="btn btn-primary btn-md btn-block">Save</button>
             </form>
         </div>

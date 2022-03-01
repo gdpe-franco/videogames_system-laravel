@@ -10,8 +10,6 @@
                     <li class="nav-item">
                         <a class="nav-link {{ setActive('home') }}" href=" {{ route('home') }}">Home</a></li>
                     <li class="nav-item">
-                        <a class="nav-link {{ setActive('users') }}" href="{{ route('users') }}">Users</a></li>
-                    <li class="nav-item">
                         <a class="nav-link {{ setActive('videogames.*') }}" href="{{ route('videogames.index') }}">VideoGames</a></li>
                 </ul>
 

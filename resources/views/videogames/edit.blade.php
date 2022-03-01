@@ -20,9 +20,6 @@
             <div class="d-grid gap-2">
                 <button
                     class="btn btn-primary btn-md btn-block">Update</button>
-                <button
-                    class="btn btn-outline-primary btn-md btn-block">Cancel</button>
-            </div>
             </form>
         </div>
     </div>

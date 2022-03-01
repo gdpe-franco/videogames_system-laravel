@@ -40,14 +40,15 @@
                     <td>{{ $videogame->sale_price }}</td>
                     @auth
                         <td><a href=" {{ route('videogames.edit', $videogame) }}"><button class="btn btn-outline-info">Edit</button></a></td> 
-                        <form method="POST" action="{{route('videogames.destroy', $videogame)}}">
+                        
+                        <form method="POST" action=" {{route('videogames.destroy', $videogame)}} ">
                             @csrf @method('DELETE')    
-                            <td><button class="btn btn-outline-danger">Delete</button></td>
+                            <td><button class="btn-outline-danger">Delete</button></td>
                         </form>
                     @endauth
                 </tr>
             @empty
-                    <li> There are no videogames to show </li> -->
+                <li> There are no videogames to show </li>
             @endforelse
         </tbody>
     </table>
