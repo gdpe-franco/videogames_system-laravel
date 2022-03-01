@@ -54,7 +54,7 @@ class VideogameController extends Controller
         
         Mail::to('test@test.com')->send(new VideogamesFormMail($videogame));
         
-        return redirect()->route('videogames.create')->with('status', 'Videogame stored succesfully!');
+        return redirect()->route('videogames.index')->with('status', 'Videogame stored succesfully!');
     }
 
     /**
