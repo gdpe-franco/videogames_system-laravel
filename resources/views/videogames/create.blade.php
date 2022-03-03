@@ -12,7 +12,8 @@
             @include('partials.validation-errors')
 
             <form class="bg-white shadow rounded py-3 px-4"
-                method= "POST" 
+                method= "POST"
+                enctype="multipart/form-data" 
                 action="{{ route('videogames.store') }}">
                 @csrf
     

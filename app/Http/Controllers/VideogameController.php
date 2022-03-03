@@ -50,7 +50,11 @@ class VideogameController extends Controller
     {
         //Insertar sólo los campos validados
         
-        $videogame = Videogame::create($request -> validated());
+        $videogame = new Videogame($request -> validated()); //Se crea instancia de Modelo
+        
+        $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
+        
+        $videogame->save();
         
         Mail::to('test@test.com')->send(new VideogamesFormMail($videogame));
         
