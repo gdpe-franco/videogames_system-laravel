@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SaveVideogameRequest extends FormRequest
 {
@@ -29,7 +30,10 @@ class SaveVideogameRequest extends FormRequest
             'console' => 'required',
             'purchase_price' => 'required',
             'sale_price' => 'required',
-            'url' => 'required',
+            'url' => [
+                'required', 
+                //Pide url unica pero ignora la url de este proyecto
+                Rule::unique('videogames')->ignore($this->route('videogame'))],
         ];
     }
 }
