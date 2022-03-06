@@ -1,6 +1,10 @@
-<div class="custom-file">
-  <input name="image" type="file" class="custom-file-input" id="customFile">
-  <label class="custom-file-label" for="customFile">Choose file</label>
+@if($videogame->image)
+    <img class="card-img-top mb-2" 
+        src="/storage/{{ $videogame->image }}" 
+        alt="{{ $videogame->title }}">
+@endif
+<div class="custom-file mb-2">
+  <input name="image" type="file" class="custom-file-input form-control" id="customFile">
 </div>
 
 <div class="form-group">

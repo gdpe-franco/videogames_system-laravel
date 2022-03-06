@@ -24,6 +24,7 @@ class SaveVideogameRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'title' => 'required',
             'rating' => 'required',
@@ -32,8 +33,13 @@ class SaveVideogameRequest extends FormRequest
             'sale_price' => 'required',
             'url' => [
                 'required', 
-                //Pide url unica pero ignora la url de este proyecto
-                Rule::unique('videogames')->ignore($this->route('videogame'))],
+                Rule::unique('videogames')->ignore($this->route('videogame'))], //Pide url unica pero ignora la url de este proyecto
+            'image' => [
+                $this->route('videogame')? 'nullable' : 'required',
+                'image',
+                //'max:2000'
+                //'dimensions:min_width=600, min_height=400'
+            ], // 'image' => jepg, png, bmp, gif, svg o webp
         ];
     }
 }

@@ -13,6 +13,7 @@
 
             <form class="bg-white shadow rounded py-3 px-4"
                 method= "POST"
+                enctype="multipart/form-data"
                 action="{{ route('videogames.update', $videogame)}}">
                 @csrf @method('PATCH')
             

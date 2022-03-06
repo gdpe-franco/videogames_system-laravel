@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mail\VideogamesFormMail;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveVideogameRequest;
 use App\Models\Videogame;
 
@@ -55,6 +57,11 @@ class VideogameController extends Controller
         $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
         
         $videogame->save();
+
+        $image = Image::make(Storage::get($videogame->image))
+                ->widen(400) //Altura de imagen dinámica segun el ancho
+                ->limitColors(255)
+                ->encode(); //Encodificar al tipo de imagen
         
         Mail::to('test@test.com')->send(new VideogamesFormMail($videogame));
         
@@ -93,9 +100,29 @@ class VideogameController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Videogame $videogame, SaveVideogameRequest $request) //i$d
-    {
-        $videogame->update($request->validated());
-        return redirect()->route('videogames.index', $videogame)->with('status', 'Videogame updated succesfully!');
+    { 
+        if( $request->hasFile('image')){
+            Storage::delete($videogame->image);
+
+            $videogame->fill( $request -> validated() ); //Rellena los campos
+        
+            $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
+        
+            $videogame->save();
+
+            $image = Image::make(Storage::get($videogame->image))
+                ->widen(400) //Altura de imagen dinámica segun el ancho
+                ->limitColors(255)
+                ->encode(); //Encodificar al tipo de imagen
+            
+            Storage::put($videogame->image, (string)$image);
+
+        } else {
+            $videogame->update( array_filter($request->validated()) );
+        }
+    
+        return redirect()->route('videogames.index', $videogame)
+            ->with('status', 'Videogame updated succesfully!');
     }
 
     /**
@@ -106,6 +133,7 @@ class VideogameController extends Controller
      */
     public function destroy(Videogame $videogame)
     {
+        Storage::delete($videogame->image);
         $videogame -> delete();
         return redirect()->route('videogames.index')->with('status', 'Videogame deleted succesfully');
     }
