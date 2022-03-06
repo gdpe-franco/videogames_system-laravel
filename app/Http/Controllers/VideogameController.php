@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VideogameSaved;
+use App\Http\Requests\SaveVideogameRequest;
 use App\Mail\VideogamesFormMail;
+use App\Models\Videogame;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\SaveVideogameRequest;
-use App\Models\Videogame;
 
 class VideogameController extends Controller
 {
@@ -58,10 +58,7 @@ class VideogameController extends Controller
         
         $videogame->save();
 
-        $image = Image::make(Storage::get($videogame->image))
-                ->widen(400) //Altura de imagen dinámica segun el ancho
-                ->limitColors(255)
-                ->encode(); //Encodificar al tipo de imagen
+        VideogameSaved::dispatch($videogame);
         
         Mail::to('test@test.com')->send(new VideogamesFormMail($videogame));
         
@@ -110,12 +107,7 @@ class VideogameController extends Controller
         
             $videogame->save();
 
-            $image = Image::make(Storage::get($videogame->image))
-                ->widen(400) //Altura de imagen dinámica segun el ancho
-                ->limitColors(255)
-                ->encode(); //Encodificar al tipo de imagen
-            
-            Storage::put($videogame->image, (string)$image);
+            VideogameSaved::dispatch($videogame);
 
         } else {
             $videogame->update( array_filter($request->validated()) );
