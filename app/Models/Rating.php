@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     use HasFactory;
+
+    public function videogames() //El nombre especifica la relacion
+    {
+        return $this->hasMany(Videogame::class);
+    }
 }
