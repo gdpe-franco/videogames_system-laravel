@@ -9,6 +9,11 @@ class Rating extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'url';
+    }
+
     public function videogames() //El nombre especifica la relacion
     {
         return $this->hasMany(Videogame::class);

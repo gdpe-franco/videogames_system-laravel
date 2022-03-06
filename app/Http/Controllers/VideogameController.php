@@ -26,7 +26,7 @@ class VideogameController extends Controller
      */
     public function index()
     {
-        $videogames = Videogame::with('rating')->get();
+        $videogames = Videogame::with('rating')->get(); //Precarga la relación y evita consultas N+1
 
         return view('videogames.index', compact('videogames'));
     }
