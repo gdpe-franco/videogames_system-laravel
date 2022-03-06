@@ -14,20 +14,22 @@
         name = "title" 
         value="{{ old('title', $videogame -> title)}}">
 </div>
+
 <div class="form-group">
-    <label for="rating">Rating</label>
+    <label for="rating_id">Rating</label>
     <select class="form-control form-select bg-light shadow-sm"
-        name="rating" id=""  value="{{ old('rating', $videogame -> rating)}}">
-        <option selected="true" disabled="disabled">Select a rating...</option>
-        <option {{ $videogame -> rating == "Everyone" ? 'selected' : ''}}>Everyone</option>
-        <option {{ $videogame -> rating == "Everyone 10+" ? 'selected' : ''}}>Everyone 10+</option>
-        <option {{ $videogame -> rating == "Teen" ? 'selected' : ''}}>Teen</option>
-        <option {{ $videogame -> rating == "Mature 17+" ? 'selected' : ''}}>Mature 17+</option>
-        <option {{ $videogame -> rating == "Adults Only 18+" ? 'selected' : ''}}>Adults Only 18+</option>
-        <option {{ $videogame -> rating == "Rating Pending" ? 'selected' : ''}}>Rating Pending</option>
-        <option {{ $videogame -> rating == "Rating Pending-Likely Mature 17+" ? 'selected' : ''}}>Rating Pending-Likely Mature 17+</option>
+        name="rating_id" id="rating_id"  value="">
+        <option value="" selected disabled="disabled">Select a rating</option>
+        
+        @foreach($ratings as $id => $name)
+            <option value="{{ $id }}"
+                @if ($id == old('rating_id', $videogame->rating_id)) selected @endif
+            >{{ $name }}</option>
+        @endforeach
+
     </select>
 </div>
+
 <div class="form-group">
     <label for="console">Videogame console</label>
     <select class="form-control form-select bg-light shadow-sm "

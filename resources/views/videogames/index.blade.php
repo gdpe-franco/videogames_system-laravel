@@ -32,7 +32,7 @@
                 <tr>
                     <th>{{ $videogame->id }}</th>
                     <td>{{ $videogame->title }}</td>
-                    <td>{{ $videogame->rating }}</td>
+                    <td>{{ $videogame->rating->name}}</td>
                     <td>{{ $videogame->console }}</td>
                     @auth
                         <td>{{ $videogame->purchase_price }}</td>

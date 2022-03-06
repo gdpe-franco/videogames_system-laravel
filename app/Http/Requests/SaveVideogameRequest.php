@@ -27,7 +27,10 @@ class SaveVideogameRequest extends FormRequest
         
         return [
             'title' => 'required',
-            'rating' => 'required',
+            'rating_id' => [
+                'required',
+                'exists:ratings,id'
+            ],
             'console' => 'required',
             'purchase_price' => 'required',
             'sale_price' => 'required',
@@ -39,7 +42,7 @@ class SaveVideogameRequest extends FormRequest
                 'image',
                 //'max:2000'
                 //'dimensions:min_width=600, min_height=400'
-            ], // 'image' => jepg, png, bmp, gif, svg o webp
+            ],  // 'image' => jepg, png, bmp, gif, svg o webp
         ];
     }
 }
