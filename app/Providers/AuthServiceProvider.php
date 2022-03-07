@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('create-videogames', function($user){
-            return $user->email === '1200340691@upq.edu.mx';
+            return $user->email === '120034069@upq.edu.mx';
         });
     }
 }

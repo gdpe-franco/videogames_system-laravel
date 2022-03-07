@@ -23,5 +23,6 @@
              {{ config('app.name')}} | Copyright @ {{ date('Y')}}
         </footer>
     </div>
+    @yield('js')
 </body>
 </html>

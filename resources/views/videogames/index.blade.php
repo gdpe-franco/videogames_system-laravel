@@ -55,9 +55,11 @@
                         </a></td> 
                         
                         <td>
-                            <form method="POST" action=" {{route('videogames.destroy', $videogame)}} ">
+                            <form method="POST"
+                                action=" {{route('videogames.destroy', $videogame)}} "
+                                class="delete-form">
                                 @csrf @method('DELETE')   
-                                <button class="btn btn-outline-danger">Delete</button>
+                                <button type="submit" class="btn btn-outline-danger">Delete</button>
                             </form>
                         </td>
                     @endauth
@@ -68,4 +70,40 @@
         </tbody>
     </table>
 </div>
+@endsection
+
+@section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script>
+        const element = document.querySelector('form');
+        element.addEventListener('submit', event => {
+            event.preventDefault();
+            // actual logic, e.g. validate the form
+            console.log('Form submission cancelled.');
+     
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    )
+                }
+            })
+        });
+    </script>
+
+    <script>
+        Swal.fire('Any fool can use a computer')
+    </script>
+
 @endsection
