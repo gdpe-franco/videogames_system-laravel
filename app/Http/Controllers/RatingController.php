@@ -11,7 +11,7 @@ class RatingController extends Controller
     {
         return view('videogames.index', [
             'rating' => $rating,
-            'videogames' => $rating->videogames()->load('rating')
+            'videogames' => $rating->videogames()->with('rating')->get()
         ]);
     }
 }
