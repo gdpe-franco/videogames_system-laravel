@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Console extends Model
 {
     use HasFactory;
+
+    public function videogames() //El nombre especifica la relación
+    {
+        return $this->hasMany(Videogame::class);
+    }
 }
