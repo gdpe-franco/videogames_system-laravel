@@ -44,7 +44,8 @@
                         <a href="{{ route('ratings.show', $videogame->rating) }}"
                         >{{ $videogame->rating->name}}</a>
                     </td>
-                    <td>{{ $videogame->console }}</td>
+                    <td>{{ $videogame->console->name }}</td>
+
                     @auth
                         <td>{{ $videogame->purchase_price }}</td>
                     @endauth

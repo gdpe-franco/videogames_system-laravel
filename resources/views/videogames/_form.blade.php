@@ -34,11 +34,14 @@
     <label for="console">Videogame console</label>
     <select class="form-control form-select bg-light shadow-sm "
         name="console" id="" value="{{ old('console', $videogame -> console)}}">
-        <option selected="true" disabled="disabled">Select a console...</option>
-        <option {{ $videogame -> console == "Nintendo Switch" ? 'selected' : ''}}>Nintendo Switch</option>
-        <option {{ $videogame -> console == "PlayStation 4" ? 'selected' : ''}}>PlayStation 5</option>
-        <option {{ $videogame -> console == "PlayStation 5" ? 'selected' : ''}}>PlayStation 4</option>
-        <option {{ $videogame -> console == "Xbox Series X|S" ? 'selected' : ''}}>Xbox Series X|S</option>
+        <option value="" selected="true" disabled="disabled">Select a console</option>
+        
+        @foreach($consoles as $id => $name)
+            <option value="{{ $id }}"
+                @if($id == old('console_id', $videogame->console_id)) selected @endif
+            >{{ $name }}</option>
+        @endforeach
+
     </select>
 </div>
 <div class="form-group">

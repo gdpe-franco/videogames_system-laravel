@@ -32,7 +32,10 @@ class SaveVideogameRequest extends FormRequest
                 'required',
                 'exists:ratings,id'
             ],
-            'console' => 'required',
+            'console_id' => [
+                'required',
+                'exists:consoles,id'
+            ],
             'purchase_price' => 'required',
             'sale_price' => 'required',
             'url' => [

@@ -7,6 +7,7 @@ use App\Http\Requests\SaveVideogameRequest;
 use App\Mail\VideogamesFormMail;
 use App\Models\Videogame;
 use App\Models\Rating;
+use App\Models\Console;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +29,7 @@ class VideogameController extends Controller
     {
         
         return view('videogames.index', [
-            'videogames' => Videogame::with('rating')->get()
+            'videogames' => Videogame::with('console', 'rating')->get()
         ]);
     }
 
@@ -43,7 +44,8 @@ class VideogameController extends Controller
         
         return view('videogames.create', [
             'videogame' => new Videogame,
-            'ratings' => Rating::pluck('name', 'id')
+            'ratings' => Rating::pluck('name', 'id'),
+            'consoles' => Console::pluck('name', 'id')
         ]);
         
     }
@@ -92,7 +94,8 @@ class VideogameController extends Controller
     {
         return view('videogames.edit', [
             'videogame' => $videogame,
-            'ratings' => Rating::pluck('name', 'id')
+            'ratings' => Rating::pluck('name', 'id'),
+            'consoles' => Console::pluck('name', 'id')
         ]);
     }
 
