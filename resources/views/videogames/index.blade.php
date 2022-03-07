@@ -15,7 +15,7 @@
         @endisset
 
         @auth
-            <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success mb-3">Add</button></a>
+            <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success">Add</button></a>
         @endauth
     </div>
     <table class="table">
