@@ -14,7 +14,7 @@ class Rating extends Model
         return 'url';
     }
 
-    public function videogames() //El nombre especifica la relacion
+    public function videogames() //El nombre especifica la relación
     {
         return $this->hasMany(Videogame::class);
     }
