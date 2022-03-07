@@ -14,9 +14,9 @@
             <h1 class="">Videogames</h1>
         @endisset
 
-        @auth
+        @can('create-videogames')
             <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success">Add</button></a>
-        @endauth
+        @endcan
     </div>
     <table class="table">
         <thead>

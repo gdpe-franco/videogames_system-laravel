@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class SaveVideogameRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class SaveVideogameRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Gate::allows('create-videogames');
     }
 
     /**

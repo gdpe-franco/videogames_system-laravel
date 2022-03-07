@@ -39,10 +39,13 @@ class VideogameController extends Controller
      */
     public function create()
     {
+        $this->authorize('create-videogames');
+        
         return view('videogames.create', [
             'videogame' => new Videogame,
             'ratings' => Rating::pluck('name', 'id')
         ]);
+        
     }
 
     /**
