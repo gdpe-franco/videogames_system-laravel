@@ -29,6 +29,7 @@ class VideogameController extends Controller
     {
         
         return view('videogames.index', [
+            'newVideogame' => new Videogame,
             'videogames' => Videogame::with('console', 'rating')->get()
         ]);
     }
@@ -40,10 +41,10 @@ class VideogameController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-videogames');
+        $this->authorize('create', $videogame = new Videogame);
         
         return view('videogames.create', [
-            'videogame' => new Videogame,
+            'videogame' => $videogame,
             'ratings' => Rating::pluck('name', 'id'),
             'consoles' => Console::pluck('name', 'id')
         ]);
@@ -61,6 +62,8 @@ class VideogameController extends Controller
         //Insertar sólo los campos validados
         
         $videogame = new Videogame($request -> validated()); //Se crea instancia de Modelo
+
+        $this->authorize('create', $videogame);
         
         $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
         
@@ -92,6 +95,8 @@ class VideogameController extends Controller
      */
     public function edit(Videogame $videogame)
     {
+        $this->authorize('update', $videogame);
+
         return view('videogames.edit', [
             'videogame' => $videogame,
             'ratings' => Rating::pluck('name', 'id'),
@@ -135,6 +140,8 @@ class VideogameController extends Controller
      */
     public function destroy(Videogame $videogame)
     {
+        $this->authorize('delete', $videogame);
+
         Storage::delete($videogame->image);
         $videogame -> delete();
         return redirect()->route('videogames.index')->with('status', 'Videogame deleted succesfully');

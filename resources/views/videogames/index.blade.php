@@ -19,7 +19,7 @@
             <h1 class="">Videogames</h1>
         @endif
 
-        @can('create-videogames')
+        @can('create', $newVideogame)
             <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success">Add</button></a>
         @endcan
     </div>
@@ -61,10 +61,13 @@
                     @endauth
                     <td>{{ $videogame->sale_price }}</td>
                     @auth
+                        @can('update', $videogame)
                         <td><a href=" {{ route('videogames.edit', $videogame) }}">
                             <button class="btn btn-outline-info">Edit</button>
                         </a></td> 
-                        
+                        @endcan
+
+                        @can('delete', $videogame)
                         <td>
                             <form method="POST"
                                 action=" {{route('videogames.destroy', $videogame)}} "
@@ -73,6 +76,7 @@
                                 <button type="submit" class="btn btn-outline-danger">Delete</button>
                             </form>
                         </td>
+                        @endcan
                     @endauth
                 </tr>
             @empty

@@ -15,7 +15,7 @@ class SaveVideogameRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows('create-videogames');
+        return true;
     }
 
     /**
