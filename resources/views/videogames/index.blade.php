@@ -5,14 +5,19 @@
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between align-item-center mb-3">
-        @isset($rating)
+        @if(isset($rating))
             <div>
                 <h1 class="">{{ $rating->name}}</h1>
                 <a href="{{ route('videogames.index' )}}">Go back to all videogames</a>
             </div>
+        @elseif(isset($console))
+            <div>
+                <h1 class="">{{ $console->name}}</h1>
+                <a href="{{ route('videogames.index' )}}">Go back to all videogames</a>
+            </div>
         @else   
             <h1 class="">Videogames</h1>
-        @endisset
+        @endif
 
         @can('create-videogames')
             <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success">Add</button></a>
@@ -44,10 +49,15 @@
                         <a href="{{ route('ratings.show', $videogame->rating) }}"
                         >{{ $videogame->rating->name}}</a>
                     </td>
-                    <td>{{ $videogame->console->name }}</td>
+                    <td>
+                        <a href="{{ route('consoles.show', $videogame->console) }}">
+                        {{ $videogame->console->name }}</a>
+                    </td>
 
                     @auth
-                        <td>{{ $videogame->purchase_price }}</td>
+                        <td>
+                            {{ $videogame->purchase_price }}
+                        </td>
                     @endauth
                     <td>{{ $videogame->sale_price }}</td>
                     @auth
