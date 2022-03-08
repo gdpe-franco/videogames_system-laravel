@@ -31,10 +31,10 @@
 </div>
 
 <div class="form-group">
-    <label for="console">Videogame console</label>
+    <label for="console_id">Videogame console</label>
     <select class="form-control form-select bg-light shadow-sm "
-        name="console" id="" value="{{ old('console', $videogame -> console)}}">
-        <option value="" selected="true" disabled="disabled">Select a console</option>
+        name="console_id" id="console_id" value="">
+        <option value="" selected disabled="disabled">Select a console</option>
         
         @foreach($consoles as $id => $name)
             <option value="{{ $id }}"

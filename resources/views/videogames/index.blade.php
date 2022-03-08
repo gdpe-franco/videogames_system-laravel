@@ -69,11 +69,15 @@
 
                         @can('delete', $videogame)
                         <td>
-                            <form method="POST"
-                                action=" {{route('videogames.destroy', $videogame)}} "
-                                class="delete-form">
-                                @csrf @method('DELETE')   
-                                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            <form
+                                method="POST"
+                                action=" {{route('videogames.destroy', $videogame)}} ">
+                                @csrf @method('DELETE')
+                                
+                                <button type="submit"
+                                    class="btn btn-outline-danger">
+                                    Delete
+                                </button>
                             </form>
                         </td>
                         @endcan
