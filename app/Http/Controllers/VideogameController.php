@@ -27,10 +27,10 @@ class VideogameController extends Controller
      */
     public function index()
     {
-        
         return view('videogames.index', [
             'newVideogame' => new Videogame,
-            'videogames' => Videogame::with('console', 'rating')->get()
+            'videogames' => Videogame::with('console', 'rating')->get(),
+            'deletedVideogames' => Videogame::onlyTrashed()->get()
         ]);
     }
 
@@ -142,8 +142,30 @@ class VideogameController extends Controller
     {
         $this->authorize('delete', $videogame);
 
-        Storage::delete($videogame->image);
         $videogame -> delete();
+
         return redirect()->route('videogames.index')->with('status', 'Videogame deleted succesfully');
+    }
+
+    public function restore($videogameUrl)
+    {
+        $videogame = Videogame::withTrashed()->whereUrl($videogameUrl)->firstOrFail();
+
+        $this->authorize('restore', $videogame);
+        
+        $videogame -> restore();
+
+        return redirect()->route('videogames.index')->with('status', 'Videogame restored succesfully');
+    }
+
+    public function forceDelete($videogameUrl)
+    {
+        $videogame = Videogame::withTrashed()->whereUrl($videogameUrl)->firstOrFail();
+        $this->authorize('force-delete', $videogame);
+
+        Storage::delete($videogame->image);
+
+        $videogame -> forceDelete();
+        return redirect()->route('videogames.index')->with('status', 'Videogame deleted permanently');
     }
 }

@@ -83,7 +83,7 @@ class VideogamePolicy
      */
     public function restore(User $user, Videogame $videogame)
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -95,6 +95,6 @@ class VideogamePolicy
      */
     public function forceDelete(User $user, Videogame $videogame)
     {
-        //
+        return $user->role === 'admin';
     }
 }

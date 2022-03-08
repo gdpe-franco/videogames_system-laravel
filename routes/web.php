@@ -25,3 +25,6 @@ Route::get('ratings/{rating}', [RatingController::class, 'show'])->name('ratings
 
 Route::get('consoles/{console}', [ConsoleController::class, 'show'])->name('consoles.show');
 
+Route::patch('videogames/{videogame}/restore', [VideogameController::class, 'restore'])->name('videogames.restore');
+Route::delete('videogames/{videogame}/force-delete', [VideogameController::class, 'forceDelete'])->name('videogames.force-delete');
+

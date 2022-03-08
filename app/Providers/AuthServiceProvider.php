@@ -28,5 +28,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //Gate::define('create-videogames', [VideogamePolicy::class, 'create']);
+        Gate::define('view-deleted-videogames', function($user) {
+            return $user->role === 'admin';
+        });
     }
 }

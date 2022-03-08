@@ -89,6 +89,52 @@
         </tbody>
     </table>
 </div>
+<br><br>
+@can('view-deleted-videogames')
+    <div class="container">
+        <h4>Trash</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Restore</th> 
+                    <th scope="col">Delete</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($deletedVideogames as $deletedVideogame)
+                    <tr>
+                        <td>
+                            {{ $deletedVideogame->title }}
+                        </td>
+                        @can('restore', $deletedVideogame)
+                            <td>
+                                <form method="POST"
+                                    action="{{ route('videogames.restore', $deletedVideogame) }}">
+                                    @csrf @method('PATCH')
+                                    <button type="submit" class ="btn btn-outline-warning">Restore</button>
+                                </form>
+                            </td>
+                        @endcan
+                        @can('force-delete', $deletedVideogame)
+                            <td>
+                                <form method="POST"
+                                    onsubmit=" return confirm('Are you sure?')"
+                                    action="{{ route('videogames.force-delete', $deletedVideogame) }}">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class ="btn btn-outline-danger">Delete permanently</button>
+                                </form>
+                            </td>
+                        @endcan
+                    </tr>
+                    @empty
+                        No videogames in trash
+                @endforelse
+            </tbody>    
+        </table>
+    </div>
+@endcan
 @endsection
 
 @section('js')
