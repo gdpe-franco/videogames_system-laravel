@@ -52,7 +52,7 @@
 </div>
 <div class="form-group">
     <label for="sale_price">Sale Price</label>
-    <input class="form-control bg-light shadow-sm"
+    <input disabled class="form-control bg-light shadow-sm"
         type="number" name = "sale_price" step="0.01" 
         value="{{ old('sale_price', $videogame -> sale_price)}}">
 </div>

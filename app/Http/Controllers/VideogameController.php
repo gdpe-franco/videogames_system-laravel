@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
+
 class VideogameController extends Controller
 {
 
@@ -20,25 +21,17 @@ class VideogameController extends Controller
         $this->middleware('auth')->except('index');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return view('videogames.index', [
             'newVideogame' => new Videogame,
             'videogames' => Videogame::with('console', 'rating')->get(),
-            'deletedVideogames' => Videogame::onlyTrashed()->get()
+            'deletedVideogames' => Videogame::onlyTrashed(),
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $this->authorize('create', $videogame = new Videogame);
@@ -46,17 +39,12 @@ class VideogameController extends Controller
         return view('videogames.create', [
             'videogame' => $videogame,
             'ratings' => Rating::pluck('name', 'id'),
-            'consoles' => Console::pluck('name', 'id')
+            'consoles' => Console::pluck('name', 'id'),
         ]);
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(SaveVideogameRequest $request)
     {
         //Insertar sólo los campos validados
@@ -67,6 +55,10 @@ class VideogameController extends Controller
         
         $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
         
+        // $purchase_price = $request -> get('purchase_price');
+
+        // $videogame['sale_price'] = $purchase_price * 1.4;
+
         $videogame->save();
 
         VideogameSaved::dispatch($videogame);
@@ -76,23 +68,13 @@ class VideogameController extends Controller
         return redirect()->route('videogames.index')->with('status', 'Videogame stored succesfully!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Videogame $videogame)
     {
         $this->authorize('update', $videogame);
@@ -104,22 +86,20 @@ class VideogameController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Videogame $videogame, SaveVideogameRequest $request) //i$d
     { 
         if( $request->hasFile('image')){
-            Storage::delete($videogame->image);
+            //Storage::delete($videogame->image);
 
             $videogame->fill( $request -> validated() ); //Rellena los campos
         
             $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
         
+            // $purchase_price = $request -> input('purchase_price');
+
+            // $videogame['sale_price']= $purchase_price*1.4;
+
             $videogame->save();
 
             VideogameSaved::dispatch($videogame);
@@ -132,12 +112,7 @@ class VideogameController extends Controller
             ->with('status', 'Videogame updated succesfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Videogame $videogame)
     {
         $this->authorize('delete', $videogame);
@@ -146,6 +121,7 @@ class VideogameController extends Controller
 
         return redirect()->route('videogames.index')->with('status', 'Videogame deleted succesfully');
     }
+
 
     public function restore($videogameUrl)
     {
@@ -157,6 +133,7 @@ class VideogameController extends Controller
 
         return redirect()->route('videogames.index')->with('status', 'Videogame restored succesfully');
     }
+
 
     public function forceDelete($videogameUrl)
     {

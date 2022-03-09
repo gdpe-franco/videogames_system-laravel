@@ -8,18 +8,18 @@
         @if(isset($rating))
             <div>
                 <h1 class="">{{ $rating->name}}</h1>
-                <a href="{{ route('videogames.index' )}}">Go back to all videogames</a>
+                <a href="{{ route('videogames.index')}}">Go back to all videogames</a>
             </div>
         @elseif(isset($console))
             <div>
                 <h1 class="">{{ $console->name}}</h1>
-                <a href="{{ route('videogames.index' )}}">Go back to all videogames</a>
+                <a href="{{ route('videogames.index')}}">Go back to all videogames</a>
             </div>
         @else   
             <h1 class="">Videogames</h1>
         @endif
 
-        @can('create', $newVideogame)
+        @can('create', new App\Policies\VideogamePolicy)
             <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success">Add</button></a>
         @endcan
     </div>
@@ -62,9 +62,11 @@
                     <td>{{ $videogame->sale_price }}</td>
                     @auth
                         @can('update', $videogame)
-                        <td><a href=" {{ route('videogames.edit', $videogame) }}">
-                            <button class="btn btn-outline-info">Edit</button>
-                        </a></td> 
+                        <td>
+                            <a href=" {{ route('videogames.edit', $videogame) }}">
+                                <button class="btn btn-outline-info">Edit</button>
+                            </a>
+                        </td> 
                         @endcan
 
                         @can('delete', $videogame)
@@ -129,7 +131,7 @@
                         @endcan
                     </tr>
                     @empty
-                        No videogames in trash
+                <li> There are no videogames to show </li>
                 @endforelse
             </tbody>    
         </table>

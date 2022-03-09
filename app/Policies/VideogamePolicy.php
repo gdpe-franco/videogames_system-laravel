@@ -12,7 +12,7 @@ class VideogamePolicy
 
     public function before($user, $ability)
     {
-        if ($user->role === 'superadmin') {
+        if ($user->role === 'admin') {
             return true;
         }
     }
