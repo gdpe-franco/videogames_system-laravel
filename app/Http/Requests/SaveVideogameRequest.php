@@ -37,7 +37,7 @@ class SaveVideogameRequest extends FormRequest
                 'exists:consoles,id'
             ],
             'purchase_price' => 'required',
-            'sale_price' => 'required',
+            //'sale_price' => 'required',
             'url' => [
                 'required', 
                 Rule::unique('videogames')->ignore($this->route('videogame'))], //Pide url unica pero ignora la url de este proyecto

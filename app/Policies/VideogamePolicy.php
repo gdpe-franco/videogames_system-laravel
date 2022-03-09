@@ -24,7 +24,7 @@ class VideogamePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**

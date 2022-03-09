@@ -19,7 +19,7 @@
             <h1 class="">Videogames</h1>
         @endif
 
-        @can('create', new App\Policies\VideogamePolicy)
+        @can('create', App\Models\Videogame::class)
             <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success">Add</button></a>
         @endcan
     </div>
@@ -98,7 +98,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Restore</th> 
                     <th scope="col">Delete</th>
                     
@@ -125,13 +125,13 @@
                                     onsubmit=" return confirm('Are you sure?')"
                                     action="{{ route('videogames.force-delete', $deletedVideogame) }}">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class ="btn btn-outline-danger">Delete permanently</button>
+                                    <button type="submit" class ="btn btn-danger">Delete permanently</button>
                                 </form>
                             </td>
                         @endcan
                     </tr>
                     @empty
-                <li> There are no videogames to show </li>
+                    No videogames in trash
                 @endforelse
             </tbody>    
         </table>
@@ -142,32 +142,6 @@
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
-    <script>
-        const element = document.querySelector('form');
-        element.addEventListener('submit', event => {
-            event.preventDefault();
-            // actual logic, e.g. validate the form
-            console.log('Form submission cancelled.');
-     
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    )
-                }
-            })
-        });
-    </script>
 
     <script>
         Swal.fire('Any fool can use a computer')

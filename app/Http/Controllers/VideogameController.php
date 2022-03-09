@@ -20,24 +20,23 @@ class VideogameController extends Controller
     {
         $this->middleware('auth')->except('index');
     }
-
     
     public function index()
     {
         return view('videogames.index', [
             'newVideogame' => new Videogame,
             'videogames' => Videogame::with('console', 'rating')->get(),
-            'deletedVideogames' => Videogame::onlyTrashed(),
+            'deletedVideogames' => Videogame::onlyTrashed()->get(),
         ]);
     }
 
     
     public function create()
     {
-        $this->authorize('create', $videogame = new Videogame);
+        $this->authorizeResource(Videogame::class, 'create');
         
         return view('videogames.create', [
-            'videogame' => $videogame,
+            'videogame' => $videogame = new Videogame,
             'ratings' => Rating::pluck('name', 'id'),
             'consoles' => Console::pluck('name', 'id'),
         ]);
@@ -55,9 +54,9 @@ class VideogameController extends Controller
         
         $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
         
-        // $purchase_price = $request -> get('purchase_price');
+        $purchase_price = $request -> get('purchase_price');
 
-        // $videogame['sale_price'] = $purchase_price * 1.4;
+        $videogame['sale_price'] = $purchase_price * 1.4;
 
         $videogame->save();
 
@@ -82,7 +81,7 @@ class VideogameController extends Controller
         return view('videogames.edit', [
             'videogame' => $videogame,
             'ratings' => Rating::pluck('name', 'id'),
-            'consoles' => Console::pluck('name', 'id')
+            'consoles' => Console::pluck('name', 'id'),
         ]);
     }
 
@@ -96,15 +95,19 @@ class VideogameController extends Controller
         
             $videogame->image = $request->file('image')->store('images'); // en carpeta storage/public
         
-            // $purchase_price = $request -> input('purchase_price');
+            $purchase_price = $request -> input('purchase_price');
 
-            // $videogame['sale_price']= $purchase_price*1.4;
+            $videogame['sale_price']= $purchase_price*1.4;
 
             $videogame->save();
 
             VideogameSaved::dispatch($videogame);
 
         } else {
+            $purchase_price = $request -> input('purchase_price');
+
+            $videogame['sale_price']= $purchase_price*1.4;
+            
             $videogame->update( array_filter($request->validated()) );
         }
     
