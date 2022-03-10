@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Videogame;
+use App\Models\Console;
 use App\Models\Rating;
 use App\Models\User;
 use Tests\TestCase;
@@ -20,24 +21,16 @@ class ListVideogamesTest extends TestCase
      */
     public function test_can_see_all_videogames()
     {
-            //$this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         //Setup 
-        $rating = Rating::factory()->state(new Sequence(
-            ['name' => 'Everyone'],
-            ['name' => 'Everyone 10+'],
-            ['name' => 'Teen'],
-            ['name' => 'Mature 17+'],
-        ))->create();
+        $rating = Rating::factory()->create();
 
-        $videogame = Videogame::factory()->count(4)->state(new Sequence(
-            ['console' => 'Nintendo Switch'],
-            ['console' => 'PlayStation 4'],
-            ['console' => 'PlayStation 5'],
-            ['console' => 'Xbox Series X|S'],
-        ))->for($rating)->create();
+        $console = Console::factory()->create();
 
-            dd($videogame->toArray());
+        $videogame = Videogame::factory()->count(4)->for($rating)->for($console)->create();
+
+        $videogame->toArray();
 
         //Acción
         $response = $this->get(route('videogames.index'));
@@ -49,7 +42,7 @@ class ListVideogamesTest extends TestCase
 
         $response->assertViewHas('videogames');
         
-        $response->assertSee($videogame);
+        //$response->assertSee($videogame->title);
     }
 
     
