@@ -141,6 +141,7 @@ class VideogameController extends Controller
     public function forceDelete($videogameUrl)
     {
         $videogame = Videogame::withTrashed()->whereUrl($videogameUrl)->firstOrFail();
+        
         $this->authorize('force-delete', $videogame);
 
         Storage::delete($videogame->image);

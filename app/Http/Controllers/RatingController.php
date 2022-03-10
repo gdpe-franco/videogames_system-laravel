@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use App\Models\Videogame;
 
 class RatingController extends Controller
 {
@@ -11,7 +12,8 @@ class RatingController extends Controller
     {
         return view('videogames.index', [
             'rating' => $rating,
-            'videogames' => $rating->videogames()->with('rating')->get()
+            'videogames' => $rating->videogames()->with('rating')->get(),
+            'deletedVideogames' => Videogame::onlyTrashed()->get(),
         ]);
     }
 }

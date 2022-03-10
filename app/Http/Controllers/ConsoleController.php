@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Console;
 use Illuminate\Http\Request;
+use App\Models\Videogame;
 
 class ConsoleController extends Controller
 {
@@ -11,7 +12,8 @@ class ConsoleController extends Controller
     {
         return view('videogames.index', [
             'console' => $console,
-            'videogames' => $console->videogames()->with('console')->get()
+            'videogames' => $console->videogames()->with('console')->get(),
+            'deletedVideogames' => Videogame::onlyTrashed()->get(),
         ]);
     }
 }
