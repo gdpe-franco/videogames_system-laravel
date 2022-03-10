@@ -19,8 +19,14 @@
     
                 @include('videogames._form')
                 
-                <button type="submit"
-                    class="btn btn-primary btn-md btn-block">Save</button>
+                <div class="d-grid gap-2">
+                    <button type="submit"
+                        class="btn btn-primary btn-md btn-block">Save
+                    </button>
+                    <button type="button" onclick="location.href='{{ route('videogames.index') }}'"
+                        class="btn btn-outline-primary btn-md btn-block">Cancel
+                    </button>
+                </div> 
             </form>
         </div>
     </div>

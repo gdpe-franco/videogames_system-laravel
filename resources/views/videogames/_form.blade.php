@@ -44,18 +44,19 @@
 
     </select>
 </div>
-<div class="form-group">
+<div class="form-group col-xs-2">
     <label for="purchase_price">Purchase Price</label>
-    <input class="form-control bg-light shadow-sm"
-        type="number" name = "purchase_price" step="0.01" 
-        value="{{ old('purchase_price', $videogame -> purchase_price)}}">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+        </div>
+        <div class="col-xs-4">
+        <input class="form-control bg-light shadow-sm"
+            type="number" name = "purchase_price" step="0.01" 
+            value="{{ old('purchase_price', $videogame -> purchase_price)}}"> </div>
+    </div>
 </div>
-<!-- <div class="form-group">
-    <label for="sale_price">Sale Price</label>
-    <input disabled class="form-control bg-light shadow-sm"
-        type="number" name = "sale_price" step="0.01" 
-        value="{{ old('sale_price', $videogame -> sale_price)}}">
-</div> -->
+
 <div class="form-group">
     <label for="url">URL</label> 
     <input class="form-control bg-light shadow-sm"

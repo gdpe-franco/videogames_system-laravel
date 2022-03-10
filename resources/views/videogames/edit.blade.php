@@ -18,9 +18,14 @@
                 @csrf @method('PATCH')
             
                 @include('videogames._form')
-            <div class="d-grid gap-2">
-                <button
-                    class="btn btn-primary btn-md btn-block">Update</button>
+                <div class="d-grid gap-2">
+                    <button type="submit"
+                        class="btn btn-primary btn-md btn-block">Update
+                    </button>
+                    <button type="button" onclick="location.href='{{ route('videogames.index') }}'"
+                        class="btn btn-outline-primary btn-md btn-block">Cancel
+                    </button>
+                </div> 
             </form>
         </div>
     </div>

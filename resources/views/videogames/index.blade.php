@@ -20,7 +20,7 @@
         @endif
 
         @can('create', App\Models\Videogame::class)
-            <a href=" {{ route('videogames.create') }}"><button class="btn btn-outline-success">Add</button></a>
+            <a href=" {{ route('videogames.create') }}"><button class="btn btn-success">Add</button></a>
         @endcan
     </div>
     <table class="table">
@@ -31,10 +31,11 @@
                 <th scope="col">Rating</th>
                 <th scope="col">Console</th>
                 @auth
-                    <th scope="col">Purchace price</th>
+                    <th scope="col">Purchace price ($)</th>
                 @endauth
-                <th scope="col">Sale price</th>
+                <th scope="col">Sale price ($)</th>
                 @auth
+                    <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 @endauth
@@ -60,6 +61,11 @@
                         </td>
                     @endauth
                     <td>{{ $videogame->sale_price }}</td>
+                    <td>
+                        <a href=" {{ route('videogames.show', $videogame) }}">
+                            <button class="btn btn-outline-secondary">See</button>
+                        </a>
+                    </td> 
                     @auth
                         @can('update', $videogame)
                         <td>
@@ -91,7 +97,7 @@
         </tbody>
     </table>
 </div>
-<br><br>
+<br><br><br><br>
 @can('view-deleted-videogames')
     <div class="container">
         <h4>Trash</h4>
