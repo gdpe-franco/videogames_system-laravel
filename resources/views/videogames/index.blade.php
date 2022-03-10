@@ -86,7 +86,7 @@
                     @endauth
                 </tr>
             @empty
-                <li> There are no videogames to show </li>
+                There are no videogames to show
             @endforelse
         </tbody>
     </table>
@@ -121,8 +121,8 @@
                         @endcan
                         @can('force-delete', $deletedVideogame)
                             <td>
-                                <form method="POST"
-                                    onsubmit=" return confirm('Are you sure?')"
+                                <form method="POST" class="form-force-delete"
+                                    onsubmit = "formForceDelete(event)"
                                     action="{{ route('videogames.force-delete', $deletedVideogame) }}">
                                     @csrf @method('DELETE')
                                     <button type="submit" class ="btn btn-danger">Delete permanently</button>
@@ -144,7 +144,28 @@
     <script src="sweetalert2.all.min.js"></script>
 
     <script>
-        Swal.fire('Any fool can use a computer')
+        function formForceDelete (e) {
+            let element = document.querySelector(".form-force-delete");
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    element.submit();
+                    /* Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    ) */
+                }
+            })
+        }
     </script>
 
 @endsection
