@@ -23,7 +23,7 @@
             <a href=" {{ route('videogames.create') }}"><button class="btn btn-success">Add</button></a>
         @endcan
     </div>
-    <table class="table">
+    <table class="table text-center">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -101,7 +101,7 @@
 @can('view-deleted-videogames')
     <div class="container">
         <h4>Trash</h4>
-        <table class="table">
+        <table class="table text-center">
             <thead>
                 <tr>
                     <th scope="col">Title</th>
