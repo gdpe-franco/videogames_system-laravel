@@ -19,8 +19,9 @@ class VideogameFactory extends Factory
     {
         return [
             'title' => $title = $this->faker->word(),
+            'image' => $this->faker->image(null, 400, 320, null, false),
             'rating_id' => $this->faker->numberBetween(1,7),
-            'console' => 'PlayStation 4',
+            'console_id' => $this->faker->numberBetween(1,4),
             'purchase_price' => $pprice = $this->faker->randomFloat(2),
             'sale_price' => $pprice*1.4,
             'url' => Str::slug($title)
